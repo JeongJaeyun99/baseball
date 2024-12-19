@@ -42,7 +42,7 @@ class baseballTest {
 
     @org.junit.jupiter.api.Test
     void compare() {
-        baseball baseball= new baseball();
+        baseball baseball= new baseball(1,9,3);
         int[] input = {1,2,3};
         int[] check = {1,2,3};
 
