@@ -5,17 +5,23 @@ import java.util.SplittableRandom;
 public class baseball {
 
     public static void main(String[] args) {
-        baseball baseball = new baseball();
+        baseball baseball = new baseball(1,9,3);
         baseball.play();
     }
 
-    int minNum = 1;
-    int maxNum = 9;
+    int minNum;
+    int maxNum;
 
-    int maxArrayLength = 3;
+    int maxArrayLength;
 
     int[] inputArray = new int[maxArrayLength];
     int[] gameArray = new int [maxArrayLength];
+
+    baseball(int min , int max , int maxArrayLength){
+        this.minNum = min;
+        this.maxNum = max;
+        this.maxArrayLength = maxArrayLength;
+    }
 
     public void play(){
         this.inputArray = this.inputNumbers(minNum , maxNum,maxArrayLength);
@@ -23,7 +29,7 @@ public class baseball {
         String[] result = this.compare(inputArray, gameArray);
         System.out.println(Arrays.toString(inputArray));
         System.out.println(Arrays.toString(gameArray));
-        this.view(result);
+        view.resultView(result);
     }
 
     public int[] numberGenerator(int min, int max , int length){
@@ -60,12 +66,15 @@ public class baseball {
         for(int i = 0; i < length; i++){
             inputNum = sc.nextInt();
             if(inputNum < min){
+                view.inputCheckMin();
                 i = i-1;
             }
             else if(inputNum > max){
+                view.inputCheckMax();
                 i = i-1;
             }
             else if(!checkDuplicate(returnArray, inputNum)){
+                view.inputCheckDuplicate();
                 i = i -1;
             }
             else{
@@ -113,4 +122,29 @@ public class baseball {
         System.out.println(result[1]);
         System.out.println(result[2]);
     }
+
+    public class view{
+        public static void resultView(String[] result){
+            System.out.println("결과입니다");
+            System.out.println(result[0]);
+            System.out.println(result[1]);
+            System.out.println(result[2]);
+        }
+
+        public static void inputCheckDuplicate(){
+            System.out.println("중복되지 않는 값을 입력해주세요");
+        }
+
+        public static void inputCheckMin(){
+            System.out.println("최소값 이상의 값을 입력해주세요");
+        }
+
+        public static void inputCheckMax(){
+            System.out.println("최대값 이하의 값을 입력해주세요");
+        }
+
+    }
 }
+
+
+
