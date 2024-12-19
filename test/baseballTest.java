@@ -12,7 +12,17 @@ class baseballTest {
 
     @org.junit.jupiter.api.Test
     void numberGenerator() {
+        int min = 1;
+        int max = 9;
+        int size = 3;
         baseball b = new baseball();
+        int[] check = b.numberGenerator(1,9, size);
+        for(int i = 1; i < check.length; i++){
+            assertTrue(!b.checkDuplicate(check ,check[i]));
+            assertTrue(check[i] >= min);
+            assertTrue(check[i] <= max);
+        }
+        assertTrue(check.length == size);
 
     }
 
@@ -37,6 +47,10 @@ class baseballTest {
         int[] check = {1,2,3};
 
         assertArrayEquals(new String[]{"strike", "strike", "strike"}, baseball.compare(input, check));
+
+        input = new int[]{1,2,3};
+        check = new int[]{3, 2, 1};
+        assertArrayEquals(new String[]{"ball", "strike", "ball"}, baseball.compare(input, check));
     }
 
     @org.junit.jupiter.api.Test
